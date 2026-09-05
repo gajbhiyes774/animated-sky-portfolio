@@ -15,10 +15,12 @@ const ProjectsCarousel = () => {
     setSelectedId(id === selectedId ? null : id);
   };
   const tiles = useMemo(() => {
-    const fov = Math.PI;
-    const distance = 10;
-
     const columns = Math.ceil(PROJECTS.length / 2);
+    // Avoid overlap when many projects (was PI/columns = 13° for 13 cols, tile width 4.2 → overlap)
+    // For > 6 cols: widen arc and radius so chord > tile width
+    const isCrowded = PROJECTS.length > 12;
+    const fov = isCrowded ? Math.PI * 1.65 : Math.PI;
+    const distance = isCrowded ? 18 : 10;
 
     return PROJECTS.map((project, i) => {
       const row = i % 2; // 0 or 1

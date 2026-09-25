@@ -142,7 +142,7 @@ const ProjectTile = ({ project, index, position, rotation, activeId, onClick, da
         {project.url && (
           <group
             position={[0.8, -0.7, 0.2]}
-            scale={[0, 0, 1]}
+            scale={[1, 1, 1]}
             onClick={handleClick}
             onPointerOver={() => document.body.style.cursor = 'pointer'}
             onPointerOut={() => document.body.style.cursor = 'auto'}>
